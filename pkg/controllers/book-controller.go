@@ -3,11 +3,11 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/gorilla/mux"
-	"net/http"
-	"strconv"
-	"github.com/saatvik-10/bookstore/pkg/utils"
+	_ "github.com/gorilla/mux"
 	"github.com/saatvik-10/bookstore/pkg/models"
+	_ "github.com/saatvik-10/bookstore/pkg/utils"
+	"net/http"
+	_ "strconv"
 )
 
 var NewBook models.Book
