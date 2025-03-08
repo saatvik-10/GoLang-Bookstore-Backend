@@ -25,8 +25,8 @@ func GetBook(w http.ResponseWriter) {
 }
 
 func GetBookById(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	bookId := vars["bookId"]
+	vars := mux.Vars(r)      //extracts URL parameter (/books/{bookId})
+	bookId := vars["bookId"] //bookId from the URL
 	ID, err := strconv.ParseInt(bookId, 0, 0)
 
 	if err != nil {
@@ -36,6 +36,19 @@ func GetBookById(w http.ResponseWriter, r *http.Request) {
 	bookDetails, _ := models.GetBookById(ID)
 	res, _ := json.Marshal(bookDetails)
 	w.Header().Set("Content-Type", "pkglication/json")
+	w.WriteHeader(http.StatusOK)
+	_, WriteErr := w.Write(res) //to send to frontend/postman
+
+	if WriteErr != nil {
+		fmt.Println("Error", WriteErr)
+	}
+}
+
+func CreateBook(w http.ResponseWriter, r *http.Request) {
+	CreateBook := &models.Book{}
+	utils.ParseBody(r, CreateBook)
+	b := CreateBook.CreateBook()
+	res, _ := json.Marshal(b)
 	w.WriteHeader(http.StatusOK)
 	_, WriteErr := w.Write(res) //to send to frontend/postman
 
