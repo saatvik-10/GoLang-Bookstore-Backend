@@ -20,6 +20,7 @@ func init() {
 	db.AutoMigrate(&Book{})
 }
 
+//model functions that interact with the database.
 func (b *Book) CreateBook() *Book {
 	db.NewRecord(b)
 	db.Create(&b)
@@ -38,7 +39,7 @@ func GetBookById(Id int64) (*Book, *gorm.DB) {
 	return &getBook, db
 }
 
-func DeleBook(Id int64) Book {
+func DeleteBook(Id int64) Book {
 	var book Book
 	db.Where("ID=?", Id).Delete(book)
 	return book
