@@ -45,8 +45,8 @@ func GetBookById(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateBook(w http.ResponseWriter, r *http.Request) {
-	CreateBook := &models.Book{}
-	utils.ParseBody(r, CreateBook)
+	CreateBook := &models.Book{} //Creates an empty Book struct to store request data
+	utils.ParseBody(r, CreateBook) //extracts JSON data from the request body and stores it in CreateBook
 	b := CreateBook.CreateBook()
 	res, _ := json.Marshal(b)
 	w.WriteHeader(http.StatusOK)
