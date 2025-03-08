@@ -9,7 +9,7 @@ var (
 	db *gorm.DB
 )
 
-func Connect () {
+func Connect() {
 	d, err := gorm.Open("mysql", "saatvik:saatvik@1210/bookstore?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		panic(err)
