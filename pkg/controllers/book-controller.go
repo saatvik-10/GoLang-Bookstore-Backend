@@ -12,7 +12,7 @@ import (
 
 var NewBook models.Book
 
-func GetBook(w http.ResponseWriter) {
+func GetBook(w http.ResponseWriter, r *http.Request) {
 	newBooks := models.GetAllBooks() //fetch books
 	res, _ := json.Marshal(newBooks) //like "application/json" in nodejs
 	w.Header().Set("Content-Type", "pkglication/json")
